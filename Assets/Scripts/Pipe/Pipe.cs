@@ -8,11 +8,17 @@ public class Pipe : MonoBehaviour
     [SerializeField] private PipeConnectZone pipeConnectZoneLeft;
     [SerializeField] private PipeConnectZone pipeConnectZoneRight;
 
+    private float currentHeight;
+    private float maxHeight = 20f;
+    private float minHeight = 1.5f;
+    private float moveSpeed = 5f;
+
     private void Start()
     {
         IsOpen = false;
         pipeConnectZoneLeft.SetPipe(this);
         pipeConnectZoneRight.SetPipe(this);
+        currentHeight = transform.position.y;
     }
 
     public void TransferFluid(PipeConnectZone enterPipeConnectZone, LiquidElement liquidElement)
@@ -30,5 +36,41 @@ public class Pipe : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            LiftingPipe();
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            LoweringPipe();
+        }
+    }
+
+    public void LiftingPipe()
+    {
+        transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+        CheckBorder();
+    }
+
+    public void LoweringPipe()
+    {
+        transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+        CheckBorder();
+    }
+
+    private void CheckBorder()
+    {
+        Vector3 clampedPosition = transform.position;
+        clampedPosition.y = Mathf.Clamp(transform.position.y, minHeight, maxHeight);
+        transform.position = clampedPosition;
+    }
+
+    public void ActivateValve(bool isActivate)
+    {
+        IsOpen = isActivate;
     }
 }
