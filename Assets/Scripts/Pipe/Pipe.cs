@@ -8,7 +8,6 @@ public class Pipe : MonoBehaviour
     [SerializeField] private PipeConnectZone pipeConnectZoneLeft;
     [SerializeField] private PipeConnectZone pipeConnectZoneRight;
 
-    private float currentHeight;
     private float maxHeight = 20f;
     private float minHeight = 1.5f;
     private float moveSpeed = 5f;
@@ -18,7 +17,6 @@ public class Pipe : MonoBehaviour
         IsOpen = false;
         pipeConnectZoneLeft.SetPipe(this);
         pipeConnectZoneRight.SetPipe(this);
-        currentHeight = transform.position.y;
     }
 
     public void TransferFluid(PipeConnectZone enterPipeConnectZone, LiquidElement liquidElement)
