@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Pipe : MonoBehaviour
 {
-    [SerializeField] private bool isOpen;
+    [field:SerializeField] public bool IsOpen { get; private set; }
     [SerializeField] private PipeConnectZone pipeConnectZoneLeft;
     [SerializeField] private PipeConnectZone pipeConnectZoneRight;
 
     private void Start()
     {
+        IsOpen = false;
         pipeConnectZoneLeft.SetPipe(this);
         pipeConnectZoneRight.SetPipe(this);
     }

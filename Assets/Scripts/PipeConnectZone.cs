@@ -15,7 +15,7 @@ public class PipeConnectZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<LiquidElement>(out LiquidElement liquidElement) && !liquidElement.IsTransfer)
+        if (pipe.IsOpen && collision.TryGetComponent(out LiquidElement liquidElement) && !liquidElement.IsTransfer)
         {
             pipe.TransferFluid(this, liquidElement);
         }
