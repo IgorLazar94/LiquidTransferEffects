@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,9 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private Image closeValveButton, openValveButton;
     [SerializeField] private Image drainLeftButton, drainRightButton;
+    [SerializeField] private Image liquidLeftButton, liquidRightButton;
+    [SerializeField] private Image emergencyLeftImage, emergencyRightImage;
+    [SerializeField] private Image emergencyImage;
     [SerializeField] private Pipe pipe;
     [SerializeField] private StorageTank storageTankLeft;
     [SerializeField] private StorageTank storageTankRight;
@@ -14,6 +18,16 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         SwitchValveButtonsColor(false);
+    }
+
+    private void OnEnable()
+    {
+        StorageTank.OnEmergencyStopWater += EmergencyDisableWaterSupply;
+    }
+
+    private void OnDisable()
+    {
+        StorageTank.OnEmergencyStopWater -= EmergencyDisableWaterSupply;
     }
 
     public void OpenPipe(bool isOpen)
@@ -61,5 +75,54 @@ public class UIController : MonoBehaviour
         {
             drainRightButton.color = Color.red;
         }
+    }
+
+    public void EnableWaterSupplyRight()
+    {
+        if (!storageTankRight.IsActiveWaterSupply)
+        {
+            storageTankRight.ActivateWaterSupply(true);
+            liquidRightButton.color = Color.green;
+        }
+        else
+        {
+            storageTankRight.ActivateWaterSupply(false);
+            liquidRightButton.color = Color.white;
+        }
+    }
+
+    public void EnableWaterSupplyLeft()
+    {
+        if (!storageTankLeft.IsActiveWaterSupply)
+        {
+            storageTankLeft.ActivateWaterSupply(true);
+            liquidLeftButton.color = Color.green;
+        }
+        else
+        {
+            storageTankLeft.ActivateWaterSupply(false);
+            liquidLeftButton.color = Color.white;
+        }
+    }
+
+    private void EmergencyDisableWaterSupply(StorageTank storageTank)
+    {
+        if (storageTankLeft == storageTank)
+        {
+            liquidLeftButton.color = Color.white;
+            StartCoroutine(ShowEmergencyImage(emergencyLeftImage));
+        }
+        else if (storageTankRight == storageTank)
+        {
+            liquidRightButton.color = Color.white;
+            StartCoroutine(ShowEmergencyImage(emergencyRightImage));
+        }
+    }
+
+    private IEnumerator ShowEmergencyImage(Image emergencyImage)
+    {
+        emergencyImage.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        emergencyImage.gameObject.SetActive(false);
     }
 }

@@ -6,12 +6,23 @@ public class LiquidElement : MonoBehaviour
 {
     public bool IsTransfer { get; private set; }
     private Rigidbody2D liquidBody;
+    private StorageTank storageTank;
     private float impulseFoce = 15f;
+    private float lowerBarrier = -10f;
 
     private void Start()
     {
         IsTransfer = false;
         liquidBody = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        if (transform.position.y <= lowerBarrier)
+        {
+            storageTank.RemoveLiquid(this);
+            Destroy(gameObject); // ObjectPool!
+        }
     }
 
     public void TransferLiquid(TypeOfConnectZone targetTypeOfConnectZone)
@@ -41,5 +52,10 @@ public class LiquidElement : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void SetTank(StorageTank storageTank)
+    {
+        this.storageTank = storageTank;
     }
 }
