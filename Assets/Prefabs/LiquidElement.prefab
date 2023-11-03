@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 6979802940518221017}
   - component: {fileID: 6979802940518221016}
   - component: {fileID: 6979802940518220999}
+  - component: {fileID: 6731023121710536364}
   m_Layer: 6
-  m_Name: LiquidParticle
-  m_TagString: Untagged
+  m_Name: LiquidElement
+  m_TagString: Fluid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,3 +124,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6731023121710536364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6979802940518220998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09da62b7c66096d42a5cad85605fe6b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
