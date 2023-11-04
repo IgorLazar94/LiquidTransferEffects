@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class StorageTank : MonoBehaviour
     private int maxLiquidSize = 700;
     private bool cardIsActive;
     private int calculatedValueCapacity;
+    [SerializeField] private float intensity = 1.0f;  // 0.01 - 0.1  (0.05)
 
     private void Start()
     {
@@ -72,22 +74,30 @@ public class StorageTank : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private IEnumerator SpawnWaterPeriodically()
     {
-        if (IsActiveWaterSupply)
+        while (IsActiveWaterSupply)
         {
             AddNewWater();
+            yield return new WaitForSeconds(intensity);
         }
     }
 
     private void AddNewWater()
     {
         WaterLimit();
-        //var liquid = Instantiate(liquidElementPrefab, liquidSpawner.transform.position, Quaternion.identity, liquidContainer.transform); // ObjectPool!
-        var liquid = liquidPoolController.CreateLiquidElement();
-        liquid.transform.position = liquidSpawner.transform.position;
-        AddLiquidToList(liquid);
-        liquid.SetTank(this);
+
+        float[] spawnOffsets = { -0.5f, 0f, 0.5f };
+
+        foreach (float offset in spawnOffsets)
+        {
+            Vector3 spawnPosition = new Vector3(liquidSpawner.transform.position.x + offset, liquidSpawner.transform.position.y, liquidSpawner.transform.position.z);
+            //var liquid = Instantiate(liquidElementPrefab, spawnPosition, Quaternion.identity, liquidContainer.transform); // ObjectPool!
+            var liquid = liquidPoolController.CreateLiquidElement();
+            liquid.transform.position = spawnPosition;
+            AddLiquidToList(liquid);
+            liquid.SetTank(this);
+        }
     }
 
     public bool WaterLimit()
@@ -107,6 +117,10 @@ public class StorageTank : MonoBehaviour
     public void ActivateWaterSupply(bool isActivate)
     {
         IsActiveWaterSupply = isActivate;
+        if (isActivate)
+        {
+            StartCoroutine(SpawnWaterPeriodically());
+        }
     }
 
     private void OnMouseDown()
