@@ -20,7 +20,7 @@ public class LiquidElement : MonoBehaviour
         if (transform.position.y <= lowerBarrier)
         {
             storageTank.RemoveLiquidFromList(this);
-            Destroy(gameObject); // ObjectPool!
+            this.gameObject.SetActive(false);
         }
     }
 

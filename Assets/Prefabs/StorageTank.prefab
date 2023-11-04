@@ -1051,6 +1051,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 541471266718477116}
+  - component: {fileID: 6849259542743026121}
   m_Layer: 0
   m_Name: LiquidContainer
   m_TagString: Untagged
@@ -1073,6 +1074,22 @@ Transform:
   m_Father: {fileID: 5500549963998156274}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6849259542743026121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6670308522595772617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b80da4545ffc1984591e19e6b68d4b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolCount: 700
+  autoExpand: 1
+  liquidElementPrefab: {fileID: 6731023121710536364, guid: 2c75de87e54ab1a44a973d0a629b0982,
+    type: 3}
 --- !u!1 &7931497838589648013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,7 +1288,7 @@ MonoBehaviour:
   liquidElementPrefab: {fileID: 6731023121710536364, guid: 2c75de87e54ab1a44a973d0a629b0982,
     type: 3}
   capacityText: {fileID: 5786655573671633036}
-  liquidInTank: []
+  liquidPoolController: {fileID: 6849259542743026121}
 --- !u!65 &3594685901366402008
 BoxCollider:
   m_ObjectHideFlags: 0
