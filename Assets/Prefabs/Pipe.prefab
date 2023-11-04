@@ -287,10 +287,25 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4448355359221685221, guid: 7f1978ce2de10574f957d39585c4509a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448355359221701333, guid: 7f1978ce2de10574f957d39585c4509a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4448355359221737879, guid: 7f1978ce2de10574f957d39585c4509a,
         type: 3}
       propertyPath: m_Name
       value: M_Pipe_L50_White_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448355359221737879, guid: 7f1978ce2de10574f957d39585c4509a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f1978ce2de10574f957d39585c4509a, type: 3}
@@ -307,10 +322,55 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 724493782473973910}
     m_Modifications:
+    - target: {fileID: 1623643761169405736, guid: 5bfcbdbfc78be4b4b80d287baa1ac048,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1623643761169405776, guid: 5bfcbdbfc78be4b4b80d287baa1ac048,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1623643761169425930, guid: 5bfcbdbfc78be4b4b80d287baa1ac048,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1623643761169441154, guid: 5bfcbdbfc78be4b4b80d287baa1ac048,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1623643761169442318, guid: 5bfcbdbfc78be4b4b80d287baa1ac048,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1623643761169455970, guid: 5bfcbdbfc78be4b4b80d287baa1ac048,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1623643761169459536, guid: 5bfcbdbfc78be4b4b80d287baa1ac048,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1623643761169605310, guid: 5bfcbdbfc78be4b4b80d287baa1ac048,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1623643761169619530, guid: 5bfcbdbfc78be4b4b80d287baa1ac048,
         type: 3}
       propertyPath: m_Name
       value: M_Valve02_White_BoltX17_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1623643761169619530, guid: 5bfcbdbfc78be4b4b80d287baa1ac048,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1623643761169785186, guid: 5bfcbdbfc78be4b4b80d287baa1ac048,
         type: 3}
@@ -472,10 +532,25 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4448355359221685221, guid: 7f1978ce2de10574f957d39585c4509a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448355359221701333, guid: 7f1978ce2de10574f957d39585c4509a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4448355359221737879, guid: 7f1978ce2de10574f957d39585c4509a,
         type: 3}
       propertyPath: m_Name
       value: M_Pipe_L50_White_03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448355359221737879, guid: 7f1978ce2de10574f957d39585c4509a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f1978ce2de10574f957d39585c4509a, type: 3}
