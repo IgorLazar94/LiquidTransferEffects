@@ -2,8 +2,10 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 public class StorageTank : MonoBehaviour
 {
@@ -16,15 +18,19 @@ public class StorageTank : MonoBehaviour
     [SerializeField] private GameObject liquidSpawner;
     [SerializeField] private GameObject liquidContainer;
     [SerializeField] private LiquidElement liquidElementPrefab;
+    [SerializeField] private TextMeshProUGUI capacityText;
     private List<LiquidElement> liquidInTank = new List<LiquidElement>();
     private float timeToOpenDrain = 0.5f;
     private float openDrainPos = 5f;
     private float closeDrainPos = 1.5f;
     private int waterCounter;
     private int maxLiquidSize = 700;
+    private bool cardIsActive;
+    private int calculatedValueCapacity;
 
     private void Start()
     {
+        cardIsActive = false;
         DrainIsOpen = false;
         IsActiveWaterSupply = false;
     }
@@ -66,7 +72,10 @@ public class StorageTank : MonoBehaviour
             CloseDrain();
         }
 
-
+        if (cardIsActive)
+        {
+            UpdateCapacityText();
+        }
     }
 
     private void FixedUpdate()
@@ -84,7 +93,7 @@ public class StorageTank : MonoBehaviour
             IsActiveWaterSupply = false;
             OnEmergencyStopWater?.Invoke(this);
         }
-        var liquid =Instantiate(liquidElementPrefab, liquidSpawner.transform.position, Quaternion.identity, liquidContainer.transform); // ObjectPool!
+        var liquid = Instantiate(liquidElementPrefab, liquidSpawner.transform.position, Quaternion.identity, liquidContainer.transform); // ObjectPool!
         liquidInTank.Add(liquid);
         liquid.SetTank(this);
     }
@@ -97,5 +106,31 @@ public class StorageTank : MonoBehaviour
     public void ActivateWaterSupply(bool isActivate)
     {
         IsActiveWaterSupply = isActivate;
+    }
+
+    private void OnMouseDown()
+    {
+        cardIsActive = !cardIsActive;
+        ShowCapacityText();
+    }
+
+    private void ShowCapacityText()
+    {
+        if (cardIsActive)
+        {
+            capacityText.transform.DOScale(Vector3.one, 0.5f);
+            UpdateCapacityText();
+        }
+        else
+        {
+            capacityText.transform.DOScale(Vector3.zero, 0.5f);
+        }
+    }
+
+    private void UpdateCapacityText()
+    {
+        calculatedValueCapacity = Mathf.FloorToInt(((float)liquidInTank.Count / maxLiquidSize) * 100);
+        string message = "Capacity:\n" + calculatedValueCapacity.ToString() + "%";
+        capacityText.text = message;
     }
 }
