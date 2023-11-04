@@ -26,26 +26,26 @@ public class Pipe : MonoBehaviour
         switch (enterPipeConnectZone.GetTypeOfConnectZone())
         {
             case TypeOfConnectZone.Left:
+                if (storageTankRight.WaterLimit())
+                {
+                    return;
+                }
                 enterPipeConnectZone.TransferFluidToPos(pipeConnectZoneRight.transform.position, liquidElement);
                 liquidElement.TransferLiquid(TypeOfConnectZone.Left);
                 storageTankRight.AddLiquidToList(liquidElement);
                 storageTankLeft.RemoveLiquidFromList(liquidElement);
                 liquidElement.SetTank(storageTankRight);
-                if (storageTankRight.WaterLimit())
-                {
-                    uIController.OpenPipe(false);
-                }
                 break;
             case TypeOfConnectZone.Right:
+                if (storageTankLeft.WaterLimit())
+                {
+                    return;
+                }
                 enterPipeConnectZone.TransferFluidToPos(pipeConnectZoneLeft.transform.position, liquidElement);
                 liquidElement.TransferLiquid(TypeOfConnectZone.Right);
                 storageTankLeft.AddLiquidToList(liquidElement);
                 storageTankRight.RemoveLiquidFromList(liquidElement);
                 liquidElement.SetTank(storageTankLeft);
-                if (storageTankLeft.WaterLimit())
-                {
-                    uIController.OpenPipe(false);
-                }
                 break;
             default:
                 break;
