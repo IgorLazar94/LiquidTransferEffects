@@ -11,8 +11,6 @@ public class PipeConnectZone : MonoBehaviour
 {
     [SerializeField] private TypeOfConnectZone typeOfConnectZone;
     private Pipe pipe;
-    private float connectZoneRadius = 0.06f;
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

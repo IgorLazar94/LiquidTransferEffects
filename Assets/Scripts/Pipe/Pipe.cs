@@ -5,7 +5,8 @@ using DG.Tweening;
 
 public class Pipe : MonoBehaviour
 {
-    [field:SerializeField] public bool IsOpen { get; private set; }
+    [field: SerializeField] public bool IsOpen { get; private set; }
+    [SerializeField] private UIController uIController;
     [SerializeField] private PipeConnectZone pipeConnectZoneLeft, pipeConnectZoneRight;
     [SerializeField] private StorageTank storageTankLeft, storageTankRight;
 
@@ -29,12 +30,22 @@ public class Pipe : MonoBehaviour
                 liquidElement.TransferLiquid(TypeOfConnectZone.Left);
                 storageTankRight.AddLiquidToList(liquidElement);
                 storageTankLeft.RemoveLiquidFromList(liquidElement);
+                liquidElement.SetTank(storageTankRight);
+                if (storageTankRight.WaterLimit())
+                {
+                    uIController.OpenPipe(false);
+                }
                 break;
             case TypeOfConnectZone.Right:
                 enterPipeConnectZone.TransferFluidToPos(pipeConnectZoneLeft.transform.position, liquidElement);
                 liquidElement.TransferLiquid(TypeOfConnectZone.Right);
                 storageTankLeft.AddLiquidToList(liquidElement);
                 storageTankRight.RemoveLiquidFromList(liquidElement);
+                liquidElement.SetTank(storageTankLeft);
+                if (storageTankLeft.WaterLimit())
+                {
+                    uIController.OpenPipe(false);
+                }
                 break;
             default:
                 break;
@@ -77,8 +88,8 @@ public class Pipe : MonoBehaviour
         IsOpen = isActivate;
         if (isActivate)
         {
-            pipeConnectZoneLeft.transform.DOLocalMoveX(-0.3f, 0.1f).OnComplete(()=> pipeConnectZoneLeft.transform.DOLocalMoveX(-0.5f, 0.1f));
-            pipeConnectZoneRight.transform.DOLocalMoveX(0.3f, 0.1f).OnComplete(()=> pipeConnectZoneRight.transform.DOLocalMoveX(0.5f, 0.1f));
+            pipeConnectZoneLeft.transform.DOLocalMoveX(-0.3f, 0.1f).OnComplete(() => pipeConnectZoneLeft.transform.DOLocalMoveX(-0.5f, 0.1f));
+            pipeConnectZoneRight.transform.DOLocalMoveX(0.3f, 0.1f).OnComplete(() => pipeConnectZoneRight.transform.DOLocalMoveX(0.5f, 0.1f));
         }
     }
 }

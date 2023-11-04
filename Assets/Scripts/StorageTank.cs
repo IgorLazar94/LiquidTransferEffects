@@ -19,7 +19,7 @@ public class StorageTank : MonoBehaviour
     [SerializeField] private GameObject liquidContainer;
     [SerializeField] private LiquidElement liquidElementPrefab;
     [SerializeField] private TextMeshProUGUI capacityText;
-    private List<LiquidElement> liquidInTank = new List<LiquidElement>();
+    [SerializeField] private List<LiquidElement> liquidInTank = new List<LiquidElement>();
     private float timeToOpenDrain = 0.5f;
     private float openDrainPos = 5f;
     private float closeDrainPos = 1.5f;
@@ -87,14 +87,24 @@ public class StorageTank : MonoBehaviour
 
     private void AddNewWater()
     {
+        WaterLimit();
+        var liquid = Instantiate(liquidElementPrefab, liquidSpawner.transform.position, Quaternion.identity, liquidContainer.transform); // ObjectPool!
+        AddLiquidToList(liquid);
+        liquid.SetTank(this);
+    }
+
+    public bool WaterLimit()
+    {
         if (liquidInTank.Count >= maxLiquidSize)
         {
             IsActiveWaterSupply = false;
             OnEmergencyStopWater?.Invoke(this);
+            return true;
         }
-        var liquid = Instantiate(liquidElementPrefab, liquidSpawner.transform.position, Quaternion.identity, liquidContainer.transform); // ObjectPool!
-        AddLiquidToList(liquid);
-        liquid.SetTank(this);
+        else
+        {
+            return false;
+        }
     }
 
     public void ActivateWaterSupply(bool isActivate)

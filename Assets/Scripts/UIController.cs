@@ -52,7 +52,6 @@ public class UIController : MonoBehaviour
 
     public void OpenLeftDrain()
     {
-        Debug.Log(storageTankLeft.DrainIsOpen + " is open");
         storageTankLeft.SwitchDrainState();
         if (!storageTankLeft.DrainIsOpen)
         {
