@@ -8,11 +8,15 @@ public class PipeButtonController : MonoBehaviour, IPointerDownHandler, IPointer
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        AudioManager.instance.PlaySFX(AudioCollection.EngineStart, false);
+
         isButtonPressed = true;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        AudioManager.instance.StopSFX(AudioCollection.EngineStart);
+        AudioManager.instance.PlaySFX(AudioCollection.EngineEnd, false);
         isButtonPressed = false;
     }
 

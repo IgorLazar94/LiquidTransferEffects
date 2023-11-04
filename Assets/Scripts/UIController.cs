@@ -30,6 +30,7 @@ public class UIController : MonoBehaviour
 
     public void OpenPipe(bool isOpen)
     {
+        AudioManager.instance.PlaySFX(AudioCollection.PressedButton, false);
         pipe.ActivateValve(isOpen);
         SwitchValveButtonsColor(isOpen);
     }
@@ -50,6 +51,8 @@ public class UIController : MonoBehaviour
 
     public void OpenLeftDrain()
     {
+        AudioManager.instance.PlaySFX(AudioCollection.PressedButton, false);
+        AudioManager.instance.PlaySFX(AudioCollection.Valve, false);
         storageTankLeft.SwitchDrainState();
         if (!storageTankLeft.DrainIsOpen)
         {
@@ -63,6 +66,8 @@ public class UIController : MonoBehaviour
 
     public void OpenRightDrain()
     {
+        AudioManager.instance.PlaySFX(AudioCollection.PressedButton, false);
+        AudioManager.instance.PlaySFX(AudioCollection.Valve, false);
         storageTankRight.SwitchDrainState();
         if (!storageTankRight.DrainIsOpen)
         {
@@ -76,6 +81,7 @@ public class UIController : MonoBehaviour
 
     public void EnableWaterSupplyRight()
     {
+        AudioManager.instance.PlaySFX(AudioCollection.PressedButton, false);
         if (!storageTankRight.IsActiveWaterSupply)
         {
             storageTankRight.ActivateWaterSupply(true);
@@ -90,6 +96,7 @@ public class UIController : MonoBehaviour
 
     public void EnableWaterSupplyLeft()
     {
+        AudioManager.instance.PlaySFX(AudioCollection.PressedButton, false);
         if (!storageTankLeft.IsActiveWaterSupply)
         {
             storageTankLeft.ActivateWaterSupply(true);
@@ -118,6 +125,7 @@ public class UIController : MonoBehaviour
 
     private IEnumerator ShowEmergencyImage(Image emergencyImage)
     {
+        AudioManager.instance.PlaySFX(AudioCollection.Attention, false);
         emergencyImage.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         emergencyImage.gameObject.SetActive(false);

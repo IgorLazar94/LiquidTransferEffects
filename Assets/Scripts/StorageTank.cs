@@ -78,6 +78,7 @@ public class StorageTank : MonoBehaviour
     {
         while (IsActiveWaterSupply)
         {
+            AudioManager.instance.PlaySFX(AudioCollection.Waterfall, true);
             AddNewWater();
             yield return new WaitForSeconds(intensity);
         }
@@ -120,6 +121,10 @@ public class StorageTank : MonoBehaviour
         if (isActivate)
         {
             StartCoroutine(SpawnWaterPeriodically());
+        }
+        else
+        {
+            AudioManager.instance.StopSFX(AudioCollection.Waterfall);
         }
     }
 
