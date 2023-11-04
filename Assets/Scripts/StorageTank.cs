@@ -23,7 +23,6 @@ public class StorageTank : MonoBehaviour
     private float timeToOpenDrain = 0.5f;
     private float openDrainPos = 5f;
     private float closeDrainPos = 1.5f;
-    private int waterCounter;
     private int maxLiquidSize = 700;
     private bool cardIsActive;
     private int calculatedValueCapacity;
@@ -94,13 +93,8 @@ public class StorageTank : MonoBehaviour
             OnEmergencyStopWater?.Invoke(this);
         }
         var liquid = Instantiate(liquidElementPrefab, liquidSpawner.transform.position, Quaternion.identity, liquidContainer.transform); // ObjectPool!
-        liquidInTank.Add(liquid);
+        AddLiquidToList(liquid);
         liquid.SetTank(this);
-    }
-
-    public void RemoveLiquid(LiquidElement liquidElement)
-    {
-        liquidInTank.Remove(liquidElement);
     }
 
     public void ActivateWaterSupply(bool isActivate)
@@ -132,5 +126,15 @@ public class StorageTank : MonoBehaviour
         calculatedValueCapacity = Mathf.FloorToInt(((float)liquidInTank.Count / maxLiquidSize) * 100);
         string message = "Capacity:\n" + calculatedValueCapacity.ToString() + "%";
         capacityText.text = message;
+    }
+
+    public void AddLiquidToList(LiquidElement liquidElement)
+    {
+        liquidInTank.Add(liquidElement);
+    }
+
+    public void RemoveLiquidFromList(LiquidElement liquidElement)
+    {
+        liquidInTank.Remove(liquidElement);
     }
 }

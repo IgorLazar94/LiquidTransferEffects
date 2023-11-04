@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Pipe : MonoBehaviour
 {
     [field:SerializeField] public bool IsOpen { get; private set; }
-    [SerializeField] private PipeConnectZone pipeConnectZoneLeft;
-    [SerializeField] private PipeConnectZone pipeConnectZoneRight;
+    [SerializeField] private PipeConnectZone pipeConnectZoneLeft, pipeConnectZoneRight;
+    [SerializeField] private StorageTank storageTankLeft, storageTankRight;
 
     private float maxHeight = 20f;
     private float minHeight = 1.5f;
@@ -26,10 +27,14 @@ public class Pipe : MonoBehaviour
             case TypeOfConnectZone.Left:
                 enterPipeConnectZone.TransferFluidToPos(pipeConnectZoneRight.transform.position, liquidElement);
                 liquidElement.TransferLiquid(TypeOfConnectZone.Left);
+                storageTankRight.AddLiquidToList(liquidElement);
+                storageTankLeft.RemoveLiquidFromList(liquidElement);
                 break;
             case TypeOfConnectZone.Right:
                 enterPipeConnectZone.TransferFluidToPos(pipeConnectZoneLeft.transform.position, liquidElement);
                 liquidElement.TransferLiquid(TypeOfConnectZone.Right);
+                storageTankLeft.AddLiquidToList(liquidElement);
+                storageTankRight.RemoveLiquidFromList(liquidElement);
                 break;
             default:
                 break;
@@ -70,5 +75,10 @@ public class Pipe : MonoBehaviour
     public void ActivateValve(bool isActivate)
     {
         IsOpen = isActivate;
+        if (isActivate)
+        {
+            pipeConnectZoneLeft.transform.DOLocalMoveX(-0.3f, 0.1f).OnComplete(()=> pipeConnectZoneLeft.transform.DOLocalMoveX(-0.5f, 0.1f));
+            pipeConnectZoneRight.transform.DOLocalMoveX(0.3f, 0.1f).OnComplete(()=> pipeConnectZoneRight.transform.DOLocalMoveX(0.5f, 0.1f));
+        }
     }
 }
