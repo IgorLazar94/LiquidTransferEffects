@@ -9,5 +9,4 @@ public class AudioCollection
     public static string EngineEnd = "EngineEnd";
     public static string Attention = "Attention";
     public static string Valve = "Valve";
-    public static string Waterfall = "Waterfall";
 }
