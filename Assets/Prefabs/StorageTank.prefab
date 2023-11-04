@@ -1172,6 +1172,7 @@ MonoBehaviour:
   liquidElementPrefab: {fileID: 6731023121710536364, guid: 2c75de87e54ab1a44a973d0a629b0982,
     type: 3}
   capacityText: {fileID: 5786655573671633036}
+  liquidInTank: []
 --- !u!65 &3594685901366402008
 BoxCollider:
   m_ObjectHideFlags: 0
