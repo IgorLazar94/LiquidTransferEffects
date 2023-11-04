@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -34,8 +33,6 @@ public class AudioManager : MonoBehaviour
                 return;
             }
         }
-
-
         Sound s = Array.Find(sfxSounds, x => x.name == name);
 
         if (s == null)
