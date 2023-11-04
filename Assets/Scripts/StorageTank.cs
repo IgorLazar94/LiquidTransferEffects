@@ -1,11 +1,7 @@
 using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering.UI;
 
 public class StorageTank : MonoBehaviour
 {
@@ -13,8 +9,7 @@ public class StorageTank : MonoBehaviour
     public bool DrainIsOpen { get; private set; }
     public bool IsActiveWaterSupply { get; private set; }
 
-    [SerializeField] private Transform leftDrain;
-    [SerializeField] private Transform rightDrain;
+    [SerializeField] private Transform leftDrain, rightDrain;
     [SerializeField] private GameObject liquidSpawner;
     [SerializeField] private GameObject liquidContainer;
     [SerializeField] private LiquidElement liquidElementPrefab;
@@ -70,7 +65,6 @@ public class StorageTank : MonoBehaviour
         {
             CloseDrain();
         }
-
         if (cardIsActive)
         {
             UpdateCapacityText();

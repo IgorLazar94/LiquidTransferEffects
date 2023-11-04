@@ -1,15 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
 public class Pipe : MonoBehaviour
 {
-    [field: SerializeField] public bool IsOpen { get; private set; }
+    public bool IsOpen { get; private set; }
     [SerializeField] private UIController uIController;
     [SerializeField] private PipeConnectZone pipeConnectZoneLeft, pipeConnectZoneRight;
     [SerializeField] private StorageTank storageTankLeft, storageTankRight;
-
     private float maxHeight = 20f;
     private float minHeight = 1.5f;
     private float moveSpeed = 5f;

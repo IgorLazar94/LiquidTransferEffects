@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LiquidElement : MonoBehaviour
@@ -29,7 +28,6 @@ public class LiquidElement : MonoBehaviour
     {
         SetImpulse(targetTypeOfConnectZone);
         StartCoroutine(Transferring());
-
     }
 
     private IEnumerator Transferring()
